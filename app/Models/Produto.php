@@ -24,6 +24,6 @@ class Produto extends Model
     }
 
     public function unidade() {
-        return $this->hasOne(Unidade::class, 'id_unidade');
+        return $this->hasOne(Unidade::class, 'id_unidade', 'id_unidade');
     }
 }

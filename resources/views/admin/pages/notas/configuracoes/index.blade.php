@@ -15,6 +15,7 @@
         </li>
         @endforeach
     </ol>
+    @include('admin.includes.alerts')
 @stop
 
 @section('content')
@@ -32,7 +33,7 @@
                     <tr>
                         <td>{{ $configuracao->emitente->razao_social  }}</td> 
                         <td style="text-align: center">
-                            <a href="{{route('admin.configuracoes.edit', $configuracao->id_configuracao)}}" class="btn btn-info" title="editar"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{route('admin.configuracoes.edit', $configuracao->id_configuracao)}}" class="btn btn-info btn-sm" title="editar"><i class="fas fa-pencil-alt"></i></a>
                         </td>
                     </tr>            
                 @endforeach

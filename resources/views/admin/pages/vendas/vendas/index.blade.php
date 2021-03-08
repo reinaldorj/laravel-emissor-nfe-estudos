@@ -21,13 +21,6 @@
             <div class="input-group">
                 <input class="form-control" type="text" name="filter" placeholder="Nome" value="{{ @$pesquisa ? $pesquisa->filter : '' }}"/>
             </div>
-            <!--<div class="form-group">
-                <select class="form-control" id="finalizado" name="finalizado">
-                    <option disabled selected> Selecione uma opção </option>
-                    <option value="S">Finalizado - Sim</option>
-                    <option value="N">Finalizado - Não</option>
-                </select>
-            </div>-->
             <div class="input-group-btn">
                 <button class="btn btn-default" type="submit"><i class="fas fa-filter fa-sm"></i> Filtrar</button>
             </div>
@@ -53,16 +46,16 @@
                         <th>{{ $venda->finalizado == 'S' ? 'Sim' : 'Não' }}</th>
                         <th> {{databr($venda->data_venda)}} </th>
                         <td style="text-align: center">
-                            <a href="{{route('admin.vendas.show', $venda->id_venda)}}" class="btn btn-warning" title="detalhes"><i class="far fa-eye"></i></a>
-                            <a href="{{route('admin.vendas.edit', $venda->id_venda)}}" class="btn btn-info" title="editar"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{route('admin.vendas.show', $venda->id_venda)}}" class="btn btn-warning btn-sm" title="detalhes"><i class="far fa-eye"></i></a>
+                            <a href="{{route('admin.vendas.edit', $venda->id_venda)}}" class="btn btn-info btn-sm" title="editar"><i class="fas fa-pencil-alt"></i></a>
                             @if ($venda->finalizado == 'S')
-                            <a href="#" class="btn btn-success" title="Emitir notas"> Emitir Nota <i class="fas fa-pen-square"></i></a>
+                            <a href="{{route('admin.notafiscal.insere', $venda->id_venda)}}" class="btn btn-success btn-sm" title="Emitir notas"> Emitir Nota <i class="fas fa-pen-square"></i></a>
                             @else
-                            <button href="#" class="btn btn-default" title="Emitir notas" disabled> Emitir Nota <i class="fas fa-pen-square"></i></button>
+                            <button href="#" class="btn btn-default btn-sm" title="Emitir notas" disabled> Emitir Nota <i class="fas fa-pen-square"></i></button>
                             @endif
                         </td>
                         <td style="text-align: center">
-                            <a href="{{route('admin.vendas.detalhe', $venda->id_venda)}}" class="btn btn-dark" title="detalhes"><i class="fas fa-info-circle"></i></a>
+                            <a href="{{route('admin.vendas.detalhe', $venda->id_venda)}}" class="btn btn-dark btn-sm" title="detalhes"><i class="fas fa-info-circle"></i></a>
                         </td>
                     </tr>            
                 @endforeach

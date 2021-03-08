@@ -39,8 +39,8 @@
                     <tr>
                         <td>{{ $produto->produto }}</td> 
                         <td style="text-align: center">
-                            <a href="{{ route('admin.produtos.show', $produto->id_produto) }}" class="btn btn-warning" title="detalhes"><i class="far fa-eye"></i></a>
-                            <a href="{{ route('admin.produtos.edit', $produto->id_produto) }}" class="btn btn-info" title="editar"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('admin.produtos.show', $produto->id_produto) }}" class="btn btn-warning btn-sm" title="detalhes"><i class="far fa-eye"></i></a>
+                            <a href="{{ route('admin.produtos.edit', $produto->id_produto) }}" class="btn btn-info btn-sm" title="editar"><i class="fas fa-pencil-alt"></i></a>
                         </td>
                     </tr>            
                 @endforeach

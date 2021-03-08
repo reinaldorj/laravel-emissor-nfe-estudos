@@ -30,4 +30,15 @@ class Venda extends Model
     {
         return $this->hasMany(Cliente::class, 'id_cliente', 'id_cliente');
     }
+
+    public function itens(){
+        return $this->hasMany(ItemVenda::class, 'id_venda', 'id_venda');
+    }
+
+    public function getitens($id_venda){
+        return $this->join('item_vendas', 'item_vendas.id_venda', '=', 'vendas.id_venda')
+        ->join('produtos', 'item_vendas.id_produto', '=', 'produtos.id_produto')
+        ->join('unidades', 'produtos.id_unidade', '=', 'unidades.id_unidade')
+        ->select('vendas.*', 'item_vendas.*', 'produtos.*', 'unidades.*')->where('item_vendas.id_venda', $id_venda)->get();
+    }
 }

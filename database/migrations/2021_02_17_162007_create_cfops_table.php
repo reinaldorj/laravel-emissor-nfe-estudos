@@ -16,9 +16,9 @@ class CreateCfopsTable extends Migration
     {
         Schema::create('cfops', function (Blueprint $table) {
             $table->bigIncrements('id_cfop');
-            $table->string('codigo_cfop');
-            $table->string('desc_cfop');
-            $table->string('tipo');
+            $table->string('codigo_cfop')->nullable();
+            $table->string('desc_cfop')->nullable();
+            $table->string('tipo')->nullable();
             $table->timestamps();
         });
 

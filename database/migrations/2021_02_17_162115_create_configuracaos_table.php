@@ -15,18 +15,18 @@ class CreateConfiguracaosTable extends Migration
     {
         Schema::create('configuracaos', function (Blueprint $table) {
             $table->bigIncrements('id_configuracao');
-            $table->string('layout');
-            $table->bigInteger('nfe_serie');
-            $table->string('tipo_nota_padrao');
-            $table->string('nfe_ambiente');
-            $table->string('nfe_versao');
-            $table->integer('empresa_padrao');
-            $table->integer('ultimanfe');
-            $table->string('natureza_padrao');
-            $table->string('indFinal');
-            $table->string('tipo_frete');
-            $table->string('certificado_digital');
-            $table->string('senha');
+            $table->string('layout')->nullable();
+            $table->bigInteger('nfe_serie')->nullable();
+            $table->string('tipo_nota_padrao')->nullable();
+            $table->string('nfe_ambiente')->nullable();
+            $table->string('nfe_versao')->nullable();
+            $table->integer('empresa_padrao')->nullable();
+            $table->integer('ultimanfe')->nullable();
+            $table->string('natureza_padrao')->nullable();
+            $table->string('indFinal')->nullable();
+            $table->string('tipo_frete')->nullable();
+            $table->string('certificado_digital')->nullable();
+            $table->string('senha')->nullable();
             $table->timestamps();
         });
 

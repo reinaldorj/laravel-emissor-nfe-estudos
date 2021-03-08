@@ -27,13 +27,13 @@ class CreateProdutosTable extends Migration
             $table->decimal('mva')->nullable();
             $table->string('nfci')->nullable();
             $table->string('sku')->nullable()->unique();
-            $table->decimal('quantidade');
-            $table->decimal('peso');
-            $table->integer('id_und_medida');
-            $table->integer('id_und_peso');
-            $table->decimal('comprimento');
-            $table->decimal('largura');
-            $table->decimal('altura');
+            $table->decimal('quantidade')->nullable();
+            $table->decimal('peso')->nullable();
+            $table->integer('id_und_medida')->nullable();
+            $table->integer('id_und_peso')->nullable();
+            $table->decimal('comprimento')->nullable();
+            $table->decimal('largura')->nullable();
+            $table->decimal('altura')->nullable();
             $table->timestamps();
         });
 

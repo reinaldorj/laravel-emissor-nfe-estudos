@@ -15,27 +15,27 @@ class CreateNfedestinatariosTable extends Migration
     {
         Schema::create('nfedestinatarios', function (Blueprint $table) {
             $table->bigIncrements('id_destinatario');
-            $table->integer('id_nfe');
-            $table->string('dest_xNome');
-            $table->string('dest_IE');
-            $table->string('dest_indIEDest');
-            $table->integer('dest_ISUF');
-            $table->string('dest_IM');
-            $table->string('dest_email');
-            $table->string('dest_CNPJ');
-            $table->string('dest_CPF');
-            $table->string('dest_idEstrangeiro');
-            $table->string('dest_xLgr');
-            $table->string('dest_nro');
-            $table->string('dest_xCpl');
-            $table->string('dest_xBairro');
-            $table->integer('dest_cMun');
-            $table->string('dest_xMun');
-            $table->char('dest_UF', 2);
-            $table->string('dest_CEP');
-            $table->integer('dest_cPais');
-            $table->string('dest_xPais');
-            $table->string('dest_fone');
+            $table->integer('id_nfe')->nullable();
+            $table->string('dest_xNome')->nullable();
+            $table->string('dest_IE')->nullable();
+            $table->string('dest_indIEDest')->nullable();
+            $table->integer('dest_ISUF')->nullable();
+            $table->string('dest_IM')->nullable();
+            $table->string('dest_email')->nullable();
+            $table->string('dest_CNPJ')->nullable();
+            $table->string('dest_CPF')->nullable();
+            $table->string('dest_idEstrangeiro')->nullable();
+            $table->string('dest_xLgr')->nullable();
+            $table->string('dest_nro')->nullable();
+            $table->string('dest_xCpl')->nullable();
+            $table->string('dest_xBairro')->nullable();
+            $table->integer('dest_cMun')->nullable();
+            $table->string('dest_xMun')->nullable();
+            $table->char('dest_UF', 2)->nullable();
+            $table->string('dest_CEP')->nullable();
+            $table->integer('dest_cPais')->nullable();
+            $table->string('dest_xPais')->nullable();
+            $table->string('dest_fone')->nullable();
             $table->timestamps();
         });
 

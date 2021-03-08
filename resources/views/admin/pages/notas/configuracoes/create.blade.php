@@ -39,21 +39,31 @@
         <div class="col-sm-3">
             <div class="form-group">
                 <label for="tipo_nota_padrao ">Tipo padrão:</label>
-                <input type="text" name="tipo_nota_padrao" class="form-control" placeholder="" value="{{ isset($configuracao) ? $configuracao->tipo_nota_padrao  : old('tipo_nota_padrao') }}">
+                <select class="form-control" id="" name="tipo_nota_padrao">
+                    <option disabled selected>Selecione a tipo</option>
+                    @foreach ($tiponota as $tipo)
+                        <option value="{{$tipo->id_tipo}}" {{ @$configuracao->tipo_nota_padrao == $tipo->id_tipo ? 'selected' : '' }}>{{$tipo->tipo}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
                 <label for="nfe_ambiente ">NFE ambiente:</label>
-                <input type="text" name="nfe_ambiente" class="form-control" placeholder="" value="{{ isset($configuracao) ? $configuracao->nfe_ambiente  : old('nfe_ambiente') }}">
+                <select class="form-control select2" id="" name="nfe_ambiente">
+                    <option disabled selected>Selecione a tipo</option>
+                    @foreach ($ambientes as $ambiente)
+                        <option value="{{$ambiente->id_ambiente}}" {{ @$configuracao->nfe_ambiente == $ambiente->id_ambiente ? 'selected' : '' }}>{{$ambiente->tipo}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-3">
             <div class="form-group">
-                <label for="nfe_versao ">NFE versão:</label>
-                <input type="text" name="nfe_versao" class="form-control" placeholder="" value="{{ isset($configuracao) ? $configuracao->nfe_versao  : old('nfe_versao') }}">
+                <label for="nfe_versao ">Versão do sistema:</label>
+                <input type="text" name="nfe_versao" class="form-control" placeholder="" value="{{ isset($configuracao) ? $configuracao->nfe_versao  : '1.0' }}" readonly>
             </div>
         </div>
         <div class="col-sm-3">
@@ -70,8 +80,13 @@
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <label for="indFinal ">Ind Final</label>
-                <input type="text" name="indFinal" class="form-control" placeholder="" value="{{ isset($configuracao) ? $configuracao->indFinal  : old('indFinal') }}">
+                <label for="indFinal ">Destino da nota</label>
+                <select class="form-control" id="" name="indFinal">
+                    <option disabled selected>Selecione a destino da nota</option>
+                    @foreach ($destinos as $destino)
+                        <option value="{{$destino->id_destino}}" {{ @$configuracao->indFinal == $destino->id_destino ? 'selected' : '' }}>{{$destino->destino}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>

@@ -9,12 +9,24 @@ use App\Models\Emitente;
 
 class ConfiguracaoController extends Controller
 {
-    private $repository, $emitentes;
+    private $repository, $emitentes, $ambientes, $destinos, $tiponota;
 
     public function __construct(Configuracao $repository, Emitente $emitentes)
     {
         $this->repository = $repository;
         $this->emitentes = $emitentes;
+        $this->ambientes = (object)[
+            (object)['id_ambiente' => '1', 'tipo' => 'homologação'],
+            (object)['id_ambiente' => '2', 'tipo' => 'produção']
+        ];
+        $this->destinos = (object)[
+            (object)['id_destino'   => '0', 'destino' => 'para empresa'],
+            (object)['id_destino'   => '1', 'destino' => 'para o cliente final']
+        ];
+        $this->tiponota = (object)[
+            (object)['id_tipo'   => '0', 'tipo' => 'entrada de mercadoria'],
+            (object)['id_tipo'   => '1', 'tipo' => 'saida de mercadoria']
+        ];
     }
 
     public function index()
@@ -33,6 +45,9 @@ class ConfiguracaoController extends Controller
         $data['breadcrumb'][]   = ['link' => route('admin.configuracoes.index'), 'title'     => 'Configuração nota'];
         $data['breadcrumb'][]   = ['link' => route('admin.configuracoes.create'), 'title'    => 'Configuração'];
         $data['title']          = 'Configuracão';
+        $data['tiponota']       = $this->tiponota;
+        $data['destinos']       = $this->destinos;
+        $data['ambientes']      = $this->ambientes;
         $data['emitentes']      = $this->emitentes->all();
         $data['action']         = route('admin.configuracoes.store');
         $data['method']         = 'POST';
@@ -49,6 +64,9 @@ class ConfiguracaoController extends Controller
         $data['breadcrumb'][]   = ['link' => route('admin.configuracoes.index'), 'title'     => 'Configuração nota'];
         $data['breadcrumb'][]   = ['link' => route('admin.configuracoes.edit', $id), 'title'    => 'Editar Configuração'];
         $data['title']          = 'Editar Configuração';
+        $data['tiponota']       = $this->tiponota;
+        $data['destinos']       = $this->destinos;
+        $data['ambientes']      = $this->ambientes;
         $data['configuracao']   = $configuracao;
         $data['emitentes']      = $this->emitentes->all();
         $data['action']         = route('admin.configuracoes.update', $id);

@@ -7,14 +7,15 @@ use App\Http\Requests\StoreUpdateVenda;
 use App\Models\Cliente;
 use App\Models\ItemVenda;
 use App\Models\Produto;
+use App\Models\Nfe;
 use Illuminate\Http\Request;
 use App\Models\Venda;
 
 class VendaController extends Controller
 {
-    private $repository, $clientes, $venda, $itensvenda, $produto;
+    private $repository, $clientes, $venda, $itensvenda, $produto, $nfe;
 
-    public function __construct(Venda $repository, Cliente $clientes, Venda $venda, ItemVenda $itensvenda, Produto $produto)
+    public function __construct(Venda $repository, Cliente $clientes, Venda $venda, ItemVenda $itensvenda, Produto $produto, Nfe $nfe)
     {
         $this->repository = $repository;
         $this->clientes = $clientes;

@@ -12,10 +12,10 @@ class ItemVenda extends Model
     ];
 
     public function venda() {
-        return $this->hasOne(Cliente::class, 'id_venda', 'id_venda');
+        return $this->belongsTo(Cliente::class, 'id_venda', 'id_venda');
     }
 
     public function produto() {
-        return $this->hasOne(Produto::class, 'id_produto', 'id_produto');
+        return $this->belongsTo(Produto::class, 'id_produto', 'id_produto');
     }
 }

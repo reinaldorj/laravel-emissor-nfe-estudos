@@ -289,7 +289,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Notas',
-                    'url'  => 'admin/notas',
+                    'url'  => 'admin/notafiscal',
                     'icon' => 'ml-2 fas fa-angle-double-right'
                 ],
                 [

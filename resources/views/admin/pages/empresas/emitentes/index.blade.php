@@ -39,8 +39,8 @@
                     <tr>
                         <td>{{ $empresa->razao_social }}</td> 
                         <td style="text-align: center">
-                            <a href="{{route('admin.empresas.show', $empresa->id_emitente)}}" class="btn btn-warning" title="detalhes"><i class="far fa-eye"></i></a>
-                            <a href="{{route('admin.empresas.edit', $empresa->id_emitente)}}" class="btn btn-info" title="editar"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{route('admin.empresas.show', $empresa->id_emitente)}}" class="btn btn-warning btn-sm" title="detalhes"><i class="far fa-eye"></i></a>
+                            <a href="{{route('admin.empresas.edit', $empresa->id_emitente)}}" class="btn btn-info btn-sm" title="editar"><i class="fas fa-pencil-alt"></i></a>
                         </td>
                     </tr>            
                 @endforeach

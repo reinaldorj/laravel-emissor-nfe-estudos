@@ -15,11 +15,11 @@ class CreateItemVendasTable extends Migration
     {
         Schema::create('item_vendas', function (Blueprint $table) {
             $table->bigIncrements('id_item_venda');
-            $table->integer('id_produto');
-            $table->integer('id_venda');
-            $table->integer('id_cliente');
-            $table->decimal('qtde');
-            $table->decimal('valor');
+            $table->integer('id_produto')->nullable();
+            $table->integer('id_venda')->nullable();
+            $table->integer('id_cliente')->nullable();
+            $table->decimal('qtde')->nullable();
+            $table->decimal('valor')->nullable();
             $table->timestamps();
         });
 
