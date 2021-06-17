@@ -17,7 +17,6 @@ class ClienteController extends Controller
         $this->repository = $repository;
         $this->indIEDest = (object)[
             (object) ['id' => 1, 'tipo' => '1 - Contribuinte do ICMS'],
-            (object) ['id' => 1, 'tipo' => '1 - Contribuinte do ICMS'],
             (object) ['id' => 2, 'tipo' => '2 - Contribuinte isento'],
             (object) ['id' => 9, 'tipo' => '9 - Não Contribuinte']
         ];

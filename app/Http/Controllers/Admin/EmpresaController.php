@@ -96,7 +96,6 @@ class EmpresaController extends Controller
         $cnpjvalido = validaCNPJ($request->cnpj);
         if (!$cnpjvalido)
             return redirect()->back()->withErrors('Informe um cnpj válido!');
-        $request->merge(['iest' => '1']);
         $this->repository->create($request->all());
         return redirect()->route('admin.empresas.index');
     }

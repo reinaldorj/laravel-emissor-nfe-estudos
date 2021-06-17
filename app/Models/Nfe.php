@@ -29,6 +29,8 @@ class Nfe extends Model
         return $this->join('vendas', 'nves.id_venda', '=', 'vendas.id_venda')
         ->join('clientes', 'vendas.id_cliente', '=', 'clientes.id_cliente')
         ->join('nfestatuses', 'nves.id_status', '=', 'nfestatuses.id_status')
-        ->select('clientes.*', 'vendas.*', 'nves.*', 'nfestatuses.*')->paginate();
+        ->select('clientes.*', 'vendas.*', 'nves.*', 'nfestatuses.*')
+        ->orderBy('nves.created_at', 'desc')
+        ->paginate();
     }
 }

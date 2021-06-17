@@ -36,22 +36,28 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="cnpj">CNPJ:</label>
                         <input type="text" name="cnpj" id="cnpj" class="form-control" value="{{ isset($empresa) ? $empresa->cnpj : old('cnpj') }}">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="ie">Insc. Estadual:</label>
                         <input type="text" name="ie" class="form-control" placeholder="" value="{{ isset($empresa) ? $empresa->ie : old('ie') }}">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="im">Insc. Municipal:</label>
                         <input type="im" name="im" class="form-control" placeholder="" value="{{ isset($empresa) ? $empresa->im : old('im') }}">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="iest">IEST</label>
+                        <input type="number" name="iest" class="form-control" placeholder="" value="{{ isset($empresa) ? $empresa->iest : old('iest') }}">
                     </div>
                 </div>
             </div>

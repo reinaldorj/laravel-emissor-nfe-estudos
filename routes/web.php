@@ -8,6 +8,7 @@ include 'admin/empresas/empresas.php';
 include 'admin/clientes/clientes.php';
 include 'admin/notafiscal/notafiscal.php';
 include 'admin/vendas/vendas.php';
+include 'admin/nfe/nfe.php';
 include 'admin/configuracoes/configuracoes.php';
 
 Route::get('/', function () {

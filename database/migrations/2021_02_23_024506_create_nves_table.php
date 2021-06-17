@@ -67,6 +67,7 @@ class CreateNvesTable extends Migration
             $table->decimal('vLiq')->nullable();//47
             $table->integer('status_nota')->nullable();//48
             $table->string('finalizado')->nullable();//49
+            $table->dateTime('atualizacao_emitente')->nullable();
             $table->timestamps();
         });
 

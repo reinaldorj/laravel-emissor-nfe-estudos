@@ -164,14 +164,14 @@ class NotaFiscalController extends Controller
         $data['verProc']                = $configuracao->nfe_versao;
         $data['dhCont']                 = null;
         $data['xJust']                  = null;
-        $data['id_status']              = 2;
+        $data['id_status']              = 1;
 
 
         $id_nfe = $this->repository->create($data)->id;
 
         $dataemitente['id_nfe']         = $id_nfe;
-        $dataemitente['em_xNome']       = slug($configuracao->emitente->razao_social);
-        $dataemitente['em_xFant']       = slug($configuracao->emitente->nome_fantasia);
+        $dataemitente['em_xNome']       = strtoupper(slug($configuracao->emitente->razao_social));
+        $dataemitente['em_xFant']       = strtoupper(slug($configuracao->emitente->nome_fantasia));
         $dataemitente['em_IE']          = $configuracao->emitente->ie;
         $dataemitente['em_IEST']        = $configuracao->emitente->iest;
         $dataemitente['em_IM']          = $configuracao->emitente->im;
@@ -185,17 +185,17 @@ class NotaFiscalController extends Controller
         $dataemitente['em_cMun']        = $configuracao->emitente->ibge;
         $dataemitente['em_xMun']        = slug($configuracao->emitente->cidade);
         $dataemitente['em_UF']          = $configuracao->emitente->uf;
-        $dataemitente['em_CEP']         = slug($configuracao->emitente->cep);
+        $dataemitente['em_CEP']         = tira_mascara($configuracao->emitente->cep);
         $dataemitente['em_cPais']       = '1058';
         $dataemitente['em_xPais']       = 'Brasil';
-        $dataemitente['em_fone']        = $configuracao->emitente->fone;
+        $dataemitente['em_fone']        = tira_mascara($configuracao->emitente->fone);
         $dataemitente['em_EMAIL']       = $configuracao->emitente->email;
         //$dataemitente['em_SUFRAMA']     = $configuracao->emitente->suframa;
 
         $id_nfeemitente = $this->nfeemitente->create($dataemitente)->id;
         
         $datadestinatario['id_nfe']             = $id_nfe;
-        $datadestinatario['dest_xNome']         = slug($venda->cliente->nome);
+        $datadestinatario['dest_xNome']         = strtoupper(slug($venda->cliente->nome));
         $datadestinatario['dest_IE']            = $venda->cliente->ie;
         $datadestinatario['dest_indIEDest']     = $venda->cliente->indIEDest;
         $datadestinatario['dest_ISUF']          = $venda->cliente->suframa;

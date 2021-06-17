@@ -180,7 +180,7 @@
                     <div class="form-group">
                         <label for="ie_subt_trib">Indicador da IE do Destinatário:</label>
                         <select class="form-control" name="indIEDest" id="indIEDest">
-                            <option> Selecione um valor </option>
+                            <option disabled selected> Selecione um valor </option>
                             @foreach ($indiedest as $i)
                                 <option value="{{ $i->id }}" {{ @$cliente->indIEDest == $i->id ? 'selected' : '' }}>{{$i->tipo}}</option>
                             @endforeach

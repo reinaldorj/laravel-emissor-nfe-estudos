@@ -16,8 +16,8 @@ class ConfiguracaoController extends Controller
         $this->repository = $repository;
         $this->emitentes = $emitentes;
         $this->ambientes = (object)[
-            (object)['id_ambiente' => '1', 'tipo' => 'homologação'],
-            (object)['id_ambiente' => '2', 'tipo' => 'produção']
+            (object)['id_ambiente' => '1', 'tipo' => 'produção'],
+            (object)['id_ambiente' => '2', 'tipo' => 'homologação']
         ];
         $this->destinos = (object)[
             (object)['id_destino'   => '0', 'destino' => 'para empresa'],

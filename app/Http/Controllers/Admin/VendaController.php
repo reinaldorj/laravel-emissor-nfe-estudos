@@ -28,7 +28,7 @@ class VendaController extends Controller
     {
         $data['breadcrumb'][]   = ['link' => route('admin.principal.index'), 'title' => 'Dashboard'];
         $data['breadcrumb'][]   = ['link' => route('admin.vendas.index'), 'title' => 'Vendas'];
-        $data['vendas']         = $this->repository->with('cliente')->paginate(10);
+        $data['vendas']         = $this->repository->with('cliente')->latest()->paginate(10);
         $data['title']          = 'Vendas';
         $data['create']         = route('admin.vendas.create');
         return view('admin.pages.vendas.vendas.index', $data);

@@ -9,8 +9,8 @@
 </div>        
 @endif
 
-@if (session('message')))
-<div class="alert alert-success alert-dismissible fade show show mt-2 mb-2 ml-2 mr-2" role="alert">
+@if (session('message'))
+<div class="alert alert-success alert-dismissible fade show mt-2 mb-2 ml-2 mr-2" role="alert">
         {{ session('message') }}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>

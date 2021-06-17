@@ -29,7 +29,7 @@ class StoreUpdateEmitentes extends FormRequest
             'cnpj'                  => 'required|min:18|max:18', 
             'ie'                    => 'required', 
             'iest'                  => 'nullable', 
-            'im'                    => 'required', 
+            'im'                    => 'nullable', 
             'fone'                  => 'required',          
             'email'                 => 'required', 
             'email_contabilidade'   => 'required', 

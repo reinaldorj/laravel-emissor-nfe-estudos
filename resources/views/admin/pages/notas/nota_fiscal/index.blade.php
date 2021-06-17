@@ -3,7 +3,7 @@
 @section('title', "{$title}")
 
 @section('content_header')
-<!--<h1>{{$title}} <a href="{{$create}}" class="btn btn-primary ml-3"><i class="fas fa-plus fa-sm"></i> Novo</a></h1>-->
+<h1>{{$title}} <a href="{{$create}}" class="btn btn-primary ml-3"><i class="fas fa-plus fa-sm"></i> Novo</a></h1>
     <ol class="breadcrumb mt-2 mb-2">
         @foreach ($breadcrumb as $bread)
         <li class="breadcrumb-item" aria-current="page">
@@ -49,8 +49,8 @@
                             <a href="#" class="btn btn-warning btn-sm" title="detalhes"><i class="far fa-eye"></i></a>
                         </td>
                         <td style="text-align: center">
-                            <a href="#" class="btn btn-success btn-xs" title="">Gerar NFE</a>
-                            <a href="#" class="btn btn-success btn-xs" title="">Assinar NFE</a>
+                            <a href="{{route('admin.nfe.gerarnfe', $nota->id_nfe)}}" class="btn btn-success btn-xs" title="">Validar XML</a>
+                            <a href="{{route('admin.nfe.assinarnfe', $nota->id_nfe)}}" class="btn btn-success btn-xs" title="">Assinar XML</a>
                             <a href="#" class="btn btn-success btn-xs" title="">Enviar NFE</a>
                             <a href="#" class="btn btn-success btn-xs" title="">Autorizar NFE</a>
                             <a href="#" class="btn btn-success btn-xs" title="">DANFE</a>

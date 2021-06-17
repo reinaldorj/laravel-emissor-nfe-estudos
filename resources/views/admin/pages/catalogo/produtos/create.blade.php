@@ -24,7 +24,6 @@
                 <button type="submit" class="btn btn-success"><i class="far fa-save fa-lg"></i></button>
             </div>
 
-
             <ul class="nav nav-tabs mt-4">
                 <li class="nav-item">
                     <a class="nav-link active" role="tab" href="#dados-gerais" data-toggle="tab">Dados gerais</a>
@@ -71,7 +70,7 @@
                                 <select class="form-control" id="cfop" name="cfop">
                                     <option disabled selected> Selecione um opção </option>
                                     @foreach ($cfops as $cfop)
-                                        <option value="{{$cfop->id_cfop}}" {{ @$produto->cfop == $cfop->id_cfop ? 'selected' : '' }}>{{$cfop->desc_cfop}}</option>
+                                        <option value="{{$cfop->codigo_cfop}}" {{ @$produto->cfop == $cfop->codigo_cfop ? 'selected' : '' }}>{{$cfop->desc_cfop}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -81,8 +80,10 @@
                             <div class="form-group">
                                 <label for="extipi">Exceção tabela IPI</label>
                                 <select class="form-control" id="" name="extipi">
-                                    <option> Selecione uma opção </option>
-                                    <option> teste </option>
+                                    <option disabled selected> Selecione uma opção </option>
+                                    @foreach ($extipi as $tip)
+                                        <option value="{{$tip->id_extipi}}" {{ @$produto->extipi == $tip->id_extipi ? 'selected' : '' }}>{{$tip->extipi}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -131,8 +132,14 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="nfci">NFCI:</label>
-                                <input type="text" name="nfci" class="form-control" placeholder="" value="{{ isset($produto) ? $produto->nfci : old('nfci') }}">
+                                <select class="form-control" id="nfci" name="nfci">
+                                    <option disabled selected> Selecione uma opção </option>
+                                    @foreach ($nfci as $n)
+                                        <option value="{{$n->id_nfci}}" {{ @$produto->nfci == $n->id_nfci ? 'selected' : '' }}>{{$n->nfci}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            
                         </div>
                     </div> 
                 </div>
