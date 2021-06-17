@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\supports\widgets\form\Combo;
+use App\Helpers\supports\widgets\form\Date;
+use App\Helpers\supports\widgets\form\Entry;
+use App\Helpers\supports\widgets\form\Form;
+use App\Helpers\supports\widgets\form\wrapper\FormWrapper;
 use App\Http\Controllers\Controller;
 use App\Models\Produto;
 use App\Models\Unidade;
@@ -74,6 +79,7 @@ class ProdutoController extends Controller
         $data['cfops']          = $this->cfops->all();
         $data['nfci']           = $this->nfci;
         $data['extipi']         = $this->extipi;
+        $data['form']           = $this->form();
         $data['action']         = route('admin.produtos.store');
         $data['method']         = 'POST';
         return view('admin.pages.catalogo.produtos.create', $data);
@@ -153,5 +159,29 @@ class ProdutoController extends Controller
 
         $produto->where('id_produto', $id)->delete();
         return redirect()->route('admin.produtos.index');
+    }
+
+    private function form($obj = null)
+    {
+        $form = new FormWrapper(new Form('teste'));
+        $form->setActionInBottom(true);
+        $name = new Entry('name');
+        $lastname = new Entry('lastname');
+        $date = new Date('date');
+
+        $sexo = new Combo('sexo');
+        $sexo->addItems(['M'=> 'masculino', 'F' => 'Feminino']);
+
+        $form->addField($name, ['label' => 'Nome', 'css' => 'col-md-3']);
+        $form->addField($lastname, ['label' => 'Sobre nome', 'css' => 'col-md-3']);
+        $form->addField($date, ['label' => 'Data de nascimento']);
+        $form->addField($sexo, ['label' => 'Sexo']);
+
+        $form->addAction('Salvar', (object)['submit' => true, 'css' => 'btn btn-success mr-2', 'route' => '#']);
+        $form->addAction('Cancelar', (object)['submit' => false, 'css' => 'btn btn-dark', 'route' => '#']);
+
+        $form->setData($obj);
+
+        return $form->getForm();
     }
 }

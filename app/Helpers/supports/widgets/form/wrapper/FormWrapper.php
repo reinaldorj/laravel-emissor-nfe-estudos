@@ -25,7 +25,7 @@ class FormWrapper
     public function show($method = 'POST', $autocomplete = 'off', $list = 'autocompleteOff')
     {
         $this->form = new Element('form autocomplete="' . $autocomplete . '" list="' . $list . '"');
-        //$element->class     = 'row';
+        // $this->form->class     = 'row';
         $this->form->enctype   = 'multipart/form-data';
         $this->form->method    = $method;
         $this->form->name      = $this->decorated->getName();
@@ -40,7 +40,7 @@ class FormWrapper
             $group->class = 'form-group mb-2' . ' ' . $field->getExtraClassCss();
 
             if ($field->getLabel()) {
-                $label = new Element('small');
+                $label = new Element('label');
                 $label->class = 'control-label';
                 $label->add($field->getLabel());
                 $group->add($label);
@@ -70,7 +70,7 @@ class FormWrapper
         foreach ($this->decorated->getActions() as $label => $action) {
             $name = strtolower(str_replace(' ', '_', $label));
 
-            if ($this->decorated->getJsAction() && $action->submit)
+            if ($this->decorated->getJsAction() && !$action->submit)
                 $button = new ButtonSubmitJs('');
             else if (!$this->decorated->getJsAction() && !$action->submit)
                 $button = new ButtonSubmit('');
@@ -83,17 +83,17 @@ class FormWrapper
             $button->setAction($action->route, $label);
             $button->setFormName($this->decorated->getName());
 
-            if ($action->type)
-                $button->class = 'btn ' . $action->type;
+            if ($action->css)
+                $button->class = 'btn ' . $action->css;
             else
                 $button->class = 'btn btn-default';
 
-            if ($this->decorated->getActionInBottom()) {
-                $divBtn = new Element('div');
-                $divBtn->class = "col-xl-6 col-md-12 mt-2";
-                $divBtn->add($button);
-            }
-            $section->add($this->decorated->getActionInBottom() ? $divBtn : $button);
+            // if ($this->decorated->getActionInBottom()) {
+            //     $divBtn = new Element('div');
+            //     $divBtn->class = "col-xl-6 col-md-12 mt-2";
+            //     $divBtn->add($button);
+            // }
+            $section->add(/*$this->decorated->getActionInBottom() ? $divBtn : */ $button);
         }
         $this->form->add($section);
     }

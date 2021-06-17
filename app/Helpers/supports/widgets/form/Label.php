@@ -19,7 +19,7 @@ class Label extends Field implements FormElementInterface
         $this->setValue($value);
         
         // create a new element
-        $this->tag = new Element('small');
+        $this->tag = new Element('div');
     }
     
     /**
