@@ -14,8 +14,8 @@
 @stop
 
 @section('content')
-{!! $form !!}
-{{-- <div class="card">
+{{-- {!! $form !!} --}}
+<div class="card">
     <div class="card-body">
         @include('admin.includes.alerts')
         <form action="{{ $action }}" class="form" method="POST">
@@ -211,5 +211,5 @@
             </div>        
         </form>
     </div>
-</div> --}}
+</div>
 @stop

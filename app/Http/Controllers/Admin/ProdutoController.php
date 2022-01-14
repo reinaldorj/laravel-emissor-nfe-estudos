@@ -14,14 +14,24 @@ use App\Http\Requests\StoreUpdateProduto;
 use App\Models\cfop;
 use App\Models\UnidadeMedida;
 use App\Models\UnidadePeso;
+use App\Services\ProdutoService;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
     private $repository, $unidades, $cfops, $undpeso, $undmedida, $extipi, $nfci;
+    private $produtoService;
 
-    public function __construct(Produto $produto, Unidade $unidade, cfop $cfops, UnidadeMedida $undmedida, UnidadePeso $undpeso)
+    public function __construct(
+        Produto $produto, 
+        Unidade $unidade, 
+        cfop $cfops, 
+        UnidadeMedida $undmedida, 
+        UnidadePeso $undpeso,
+        ProdutoService $produtoService
+        )
     {
+        $this->produtoService = $produtoService;
         $this->repository   = $produto;
         $this->unidades     = $unidade;
         $this->cfops        = $cfops;
@@ -49,7 +59,7 @@ class ProdutoController extends Controller
     {
         $data['breadcrumb'][]   = ['link' => route('admin.principal.index'), 'title' => 'Dashboard'];
         $data['breadcrumb'][]   = ['link' => route('admin.produtos.index'), 'title' => 'Produtos'];
-        $data['produtos']       = $this->repository->oldest()->paginate(10);
+        $data['produtos']       = $this->produtoService->getList();
         $data['title']          = 'Produtos';
         $data['create']         = route('admin.produtos.create');
         return view('admin.pages.catalogo.produtos.index', $data);
@@ -59,7 +69,7 @@ class ProdutoController extends Controller
     {
         $data['breadcrumb'][]   = ['link' => route('admin.principal.index'), 'title' => 'Dashboard'];
         $data['breadcrumb'][]   = ['link' => route('admin.produtos.index'), 'title' => 'Produtos'];
-        $data['produtos']       = $this->repository->search($request->filter);
+        $data['produtos']       = $this->produtoService->search($request->filter);
         $data['filters']        = $request->except('_token');
         $data['pesquisa']       = $request->filter;
         $data['title']          = 'Produtos';
@@ -79,7 +89,7 @@ class ProdutoController extends Controller
         $data['cfops']          = $this->cfops->all();
         $data['nfci']           = $this->nfci;
         $data['extipi']         = $this->extipi;
-        $data['form']           = $this->form();
+        // $data['form']           = $this->form();
         $data['action']         = route('admin.produtos.store');
         $data['method']         = 'POST';
         return view('admin.pages.catalogo.produtos.create', $data);
@@ -87,9 +97,8 @@ class ProdutoController extends Controller
 
     public function edit($id)
     {
-        $produto = $this->repository->where('id_produto', $id)->first();
-        if (!$produto)
-            return redirect()->back();
+        $produto = $this->produtoService->get($id);
+        if (!$produto) return redirect()->back();
 
         $data['breadcrumb'][]   = ['link' => route('admin.principal.index'), 'title'    => 'Dashboard'];
         $data['breadcrumb'][]   = ['link' => route('admin.produtos.index'), 'title'     => 'Produtos'];
@@ -109,38 +118,24 @@ class ProdutoController extends Controller
 
     public function store(StoreUpdateProduto $request)
     {
-        //dd($request->quantidade);
-        if (!isset($request->gtin))
-            $request->merge(['gtin' => 'SEM GTIN']);
-
-        if (!isset($request->cbenef))
-            $request->merge(['cbenef' => 'SEM CBENEF']);
-
-        $this->repository->create($request->all());
+        $this->produtoService->store($request->all());
         return redirect()->route('admin.produtos.index');
     }
 
     public function update(StoreUpdateProduto $request, $id)
     {
-        $produto = $this->repository->where('id_produto', $id);
+        $produto = $this->produtoService->get($id);
         if (!$produto)
             return redirect()->back();
 
-        if (!isset($request->gtin))
-            $request->merge(['gtin' => 'SEM GTIN']);
-
-        if (!isset($request->cbenef))
-            $request->merge(['cbenef' => 'SEM CBENEF']);
-
-        $produto->update($request->except(['_token', '_method']));
+        $this->produtoService->update($request->except(['_token', '_method']), $id);
         return redirect()->route('admin.produtos.index');
     }
 
     public function show($id)
     {
-        $produto = $this->repository->where('id_produto', $id)->first();
-        if (!$produto)
-            return redirect()->back();
+        $produto = $this->produtoService->get($id);
+        if (!$produto) return redirect()->back();
 
         $data['breadcrumb'][]   = ['link' => route('admin.principal.index'), 'title'    => 'Dashboard'];
         $data['breadcrumb'][]   = ['link' => route('admin.produtos.index'), 'title'     => 'Produtos'];
@@ -153,11 +148,10 @@ class ProdutoController extends Controller
 
     public function delete($id)
     {
-        $produto = $this->repository->where('id_produto', $id)->first();
-        if (!$produto)
-            return redirect()->back();
+        $produto = $this->produtoService->get($id);
+        if (!$produto) return redirect()->back();
 
-        $produto->where('id_produto', $id)->delete();
+        $this->produtoService->destroy($id);
         return redirect()->route('admin.produtos.index');
     }
 
